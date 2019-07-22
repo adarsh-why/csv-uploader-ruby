@@ -61,9 +61,9 @@ class ImportersController < ApplicationController
     end
   end
 
-  def import
-    Importer.import(params[:file])
-    redirect_to importers_path, notice: "Data uploaded succeddfully" 
+  def uploadcsv
+    Importer.import_csv(params[:file])
+    redirect_to importers_path, notice: "Data uploaded successfully"
   end
 
   private

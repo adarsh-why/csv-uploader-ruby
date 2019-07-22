@@ -38,9 +38,8 @@
 <br>
 
 <h3>Import Products as CSV</h3>
-<%= form_tag import_importers_path, multipart: true do %>
+<%= form_tag uploadcsv_importers_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Upload Products" %>
 <% end %>
 
-<%= link_to 'New Importer', new_importer_path %>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :importers do
-    collection { post :import }
+    collection { post :uploadcsv }
   end
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to
@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   # We ask that you don't use the :as option here, as Spree relies on it being
   # the default of "spree".
   mount Spree::Core::Engine, at: '/'
+
+  mount Sidekiq::Web => "/sidekiq"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
