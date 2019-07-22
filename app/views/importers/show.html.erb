@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @importer.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @importer.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @importer.price %>
+</p>
+
+<p>
+  <strong>Availability date:</strong>
+  <%= @importer.availability_date %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @importer.slug %>
+</p>
+
+<p>
+  <strong>Stock total:</strong>
+  <%= @importer.stock_total %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @importer.category %>
+</p>
+
+<%= link_to 'Edit', edit_importer_path(@importer) %> |
+<%= link_to 'Back', importers_path %>
