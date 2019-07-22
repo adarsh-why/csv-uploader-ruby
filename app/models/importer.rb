@@ -19,17 +19,9 @@ class Importer < ActiveRecord::Base
 
     def self.async_store_csv(csv_items)
         pages = 5
-        total_count = csv_items.length - 1
-        page = total_count/pages.ceil
-        from_count = 0
-        to_count = page
-        flag = true
-
-        while flag do
-            CsvWorker.perform_async(csv_items[from_count..to_count])
-            flag = false if to_count >= total_count
-            from_count = to_count
-            to_count = to_count > total_count ? total_count : from_count + page
+        chunk = csv_items.length/pages
+        csv_items.each_slice(chunk).to_a.each do |list|
+            CsvWorker.perform_async(list)
         end
     end
 end
