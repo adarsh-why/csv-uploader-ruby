@@ -55,3 +55,6 @@ gem 'sidekiq'
 # Sidekiq monitor is built using Sinatra. Install if you want to see the queue in sidekiq
 # Sinatra is bundled from the source for Rails 5 due to dependency issue
 gem 'sinatra', github: 'sinatra/sinatra'
+
+# Use for bulk inserting data using ActiveRecord and reducing DB queries
+gem 'activerecord-import', '~> 1.0', '>= 1.0.2'
