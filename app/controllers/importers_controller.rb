@@ -62,8 +62,21 @@ class ImportersController < ApplicationController
   end
 
   def uploadcsv
-    Importer.import_csv(params[:file])
+    # Empty importer table before storing new data
+    Importer.delete_all
+    csv_items = get_csv_items(params[:file])
+    Importer.async_store_csv(csv_items)
+    # Show success message to user once the async tasks are assigned to workers
     redirect_to importers_path, notice: "Data uploaded successfully"
+  end
+
+  def get_csv_items(file)
+    items = []
+    # Converting CSV to Array of hashes
+    CSV.foreach(file.path, { col_sep: ';', headers: true }) do |row|
+        items << row.to_hash
+    end
+    return items
   end
 
   private
