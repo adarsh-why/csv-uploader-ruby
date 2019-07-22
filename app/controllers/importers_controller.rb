@@ -4,7 +4,7 @@ class ImportersController < ApplicationController
   # GET /importers
   # GET /importers.json
   def index
-    @importers = Importer.all
+    @importers = Importer.order(:id).page(params[:page])
   end
 
   # GET /importers/1
